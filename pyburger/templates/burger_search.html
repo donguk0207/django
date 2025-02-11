@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Burger Search</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .burger-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .burger-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            text-align: left;
+        }
+        .burger-card h3 {
+            margin: 0;
+            color: #343a40;
+        }
+        .burger-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍔 Burger Search</h1>
+
+    <div class="search-container">
+        <form method="GET">
+            <input type="text" name="keyword" placeholder="버거 이름을 입력하세요" required>
+            <button type="submit">🔍 검색</button>
+        </form>
+    </div>
+
+    <h2>🔎 검색 결과</h2>
+
+    {% if burgers %}
+        <div class="burger-list">
+            {% for burger in burgers %}
+                <div class="burger-card">
+                    <h3>{{ burger.name }}</h3>
+                    <p><strong>가격:</strong> {{ burger.price }}원</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>😢 검색된 버거가 없습니다.</p>
+    {% endif %}
+</body>
+</html>

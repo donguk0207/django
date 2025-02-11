@@ -6,6 +6,15 @@
 </head>
 <body>
     <h1>pyburger의 목록입니다.</h1>
-    {
+    {% if burgers %}
+        <hr>
+        <ul>
+        {% for burger in burgers %}
+            <li>{{ burger.name }} - {{ burger.price }}원, {{ burger.calories }}칼로리</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>등록된 버거가 없습니다.</p>
+    {% endif %}
 </body>
 </html>
