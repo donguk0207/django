@@ -1,0 +1,196 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+/* 기본 스타일 */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.42rem;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+html {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #333;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #f4f6f9;
+}
+
+/* ✅ 네비게이션 바 */
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #666;
+  font-size: 1.3rem;
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ✅ 버튼 스타일 */
+.btn {
+  width: 70px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 16px;
+  transition: 0.3s;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+.btn-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  border: 1px solid #bbb;
+  color: #666;
+}
+.btn-secondary:hover {
+  background-color: #bbb;
+  color: white;
+}
+
+/* ✅ 게시글 리스트 (가로 정렬 적용) */
+#post-list {
+  display: flex;
+  flex-wrap: wrap; /* 여러 줄 가능 */
+  justify-content: space-between; /* 양쪽 정렬 */
+  gap: 20px; /* 카드 간격 */
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ✅ 게시글 카드 스타일 */
+.post-card {
+  width: calc(33.333% - 20px); /* 한 줄에 3개 배치 */
+  min-width: 250px; /* 최소 크기 */
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  transition: 0.3s;
+}
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ✅ 이미지 썸네일 */
+.post-thumbnail {
+  width: 100%;
+  height: 180px;
+  background: #eef2f7;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.post-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ✅ 게시글 제목 및 내용 */
+.post-content {
+  padding: 10px 0;
+}
+.post-content h2 {
+  margin: 0;
+  color: #007bff;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post-content p {
+  color: #555;
+  font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ✅ 게시글 상세보기 */
+#post-detail {
+  width: 80%;
+  max-width: 800px;
+  margin: 80px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+/* ✅ 게시글 작성 (Post Add) */
+#post-add-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 80px auto;
+}
+#post-add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+.input-field {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ✅ 반응형 (작은 화면에서 세로 정렬 유지) */
+@media screen and (max-width: 1024px) {
+  .post-card {
+    width: calc(50% - 20px); /* 중간 화면에서는 2개씩 배치 */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #post-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .post-card {
+    width: 90%; /* 작은 화면에서는 세로 정렬 */
+  }
+}

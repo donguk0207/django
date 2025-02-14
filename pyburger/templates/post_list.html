@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>dong's Post List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="navbar">
+        <span>pylog</span>
+        <a href="/posts/add/" class="btn btn-primary">글 작성</a>
+    </div>
+
+    <div id="post-list">
+        <ul>
+            {% for post in posts %}
+                <li class="post-card">
+                    <!-- 썸네일 이미지 영역 -->
+                    <div class="post-thumbnail">
+                        {% if post.thumbnail %}
+                            <img src="{{ post.thumbnail.url }}" alt="썸네일">
+                        {% else %}
+                            <img src="" alt="">
+                        {% endif %}
+                    </div>
+                    <!-- 게시글 내용 영역 -->
+                    <div class="post-content">
+                        <a href="/posts/{{ post.id }}/">✅ {{ post.title }}</a>
+                        <p>{{ post.content }}</p>
+
+                        <!-- 댓글 섹션 -->
+                        <div class="comment-section">
+                            {% for comment in post.comment_set.all %}
+                                <div class="comment">{{ comment.content }}</div>
+                            {% empty %}
+                                <div class="comment">No 댓글</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

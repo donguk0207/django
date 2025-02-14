@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>dong's Post detail</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="navbar">
+        <span>pylog</span>
+    </div>
+    <div id="post-detail">
+        <div class="detail-card">
+            <h1>Post Detail</h1>
+
+            <div class="post-thumbnail">
+                {% if post.thumbnail %}
+                    <img src="{{ post.thumbnail.url }}" alt="썸네일">
+                {% else %}
+                    <img src="" alt="">
+                {% endif %}
+            </div>
+
+            <!-- 게시글 내용 추가 -->
+            <div class="post-content">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <ul class="comments">
+                    {% for comment in post.comment_set.all %}
+                        <li class="comment">{{ comment.content }}</li>
+                    {% empty %}
+                        <li class="comment-empty">No 댓글</li>
+                    {% endfor %}
+                </ul>
+                <form method="POST">
+                    {% csrf_token %}
+                    <textarea name="comment"></textarea>
+                    <button type="submit" class="btn btn-primary">댓글작성</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
